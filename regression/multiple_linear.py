@@ -45,10 +45,11 @@ def gradient_descent(feature_matrix, output_array, init_weights, eta, tolerance)
 
 
 def get_predictions(dataset, features, weights):
-    dataset['constant'] = 1
-    features = ['constant'] + features
     
-    feature_matrix = dataset[features].to_numpy()
+    features = features + ['constant']
+
+    # add a constant column to the front of the dataset, with value 1
+    feature_matrix = np.array(dataset[features])
     
     y_pred = np.dot(feature_matrix, weights)
     
